@@ -17,3 +17,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+
+apt_repository "koumbit-stable" do
+  uri "http://debian.koumbit.net/debian"
+  components ["stable", "main"]
+  key "http://debian.koumbit.net/debian/key.asc"
+  action :add
+end
+
+apt_repository "sources" do
+  uri "http://backports.debian.org/debian-backports"
+  components ["squeeze-backports", "main"]
+  action :add
+end
+
+require_recipe "apt"
+require_recipe "drush"
+
+package "aegir" do
+  action :install
+  options "--force-yes"
+end
