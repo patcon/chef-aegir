@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: aegir
-# Recipe:: default
+# Recipe:: package
 #
 # Copyright 2011, Patrick Connolly (Myplanet Digital)
 #
@@ -18,4 +18,28 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-include_recipe "aegir::#{node['aegir']['install_method']}"
+apt_repository "koumbit-stable" do
+  uri "http://debian.koumbit.net/debian"
+  components ["stable", "main"]
+  key "http://debian.koumbit.net/debian/key.asc"
+  action :add
+end
+
+apt_repository "debian-backports" do
+  uri "http://backports.debian.org/debian-backports"
+  components ["squeeze-backports", "main"]
+  action :add
+end
+
+bash "Creating pref for deb backports apt repo (drush)" do
+  cwd "/etc/apt"
+  code <<-EOH
+  echo "Package: drush" > preferences
+  echo "Pin: release a=squeeze-backports" >> preferences
+  echo "Pin-Priority: 1001" >> preferences
+  EOH
+end
+
+require_recipe "apt"
+
+package "aegir"

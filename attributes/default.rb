@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: aegir
-# Recipe:: default
+# Attributes:: default
 #
 # Copyright 2011, Patrick Connolly (Myplanet Digital)
 #
@@ -18,4 +18,4 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-include_recipe "aegir::#{node['aegir']['install_method']}"
+default['aegir']['install_method'] = 'package'
