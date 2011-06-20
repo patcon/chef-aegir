@@ -42,4 +42,6 @@ end
 
 require_recipe "apt"
 
+require_recipe "sudo"
+
 package "aegir"

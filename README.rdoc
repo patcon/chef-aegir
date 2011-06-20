@@ -1,5 +1,11 @@
 = DESCRIPTION:
 
+As of right now, simply builds aegir from packages, and performs the small amount of manual setup (apt repos, sudo, etc).
+
+Planning to add aegir slave recipes, as well as building from "source" (not packages) for easier customization and tweaking.
+
+Currently tested on Debian Squeeze (32- and 64-bit).
+
 = REQUIREMENTS:
 
 = ATTRIBUTES:

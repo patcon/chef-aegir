@@ -18,4 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-default['aegir']['install_method'] = 'package'
+default[:aegir][:install_method] = 'package'
+
+normal[:authorization][:sudo][:users] = ["aegir"]
+normal[:authorization][:sudo][:passwordless] = "true"
