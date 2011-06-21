@@ -45,3 +45,12 @@ require_recipe "apt"
 require_recipe "sudo"
 
 package "aegir"
+
+aegir_remotes = search(:node, 'recipes:aegir\:\:slave')
+aegir_remotes.each do |remote_node|
+  bash "Create known_hosts of aegir remote servers" do
+    code <<-EOH
+    ssh-keyscan -t rsa -H #{remote_node[:fqdn]} > /var/aegir/.ssh/known_hosts
+    EOH
+  end
+end
